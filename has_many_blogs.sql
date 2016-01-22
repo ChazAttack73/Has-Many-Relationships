@@ -45,6 +45,4 @@ CREATE TABLE comments
   "updated_at" timestamp with time zone NOT NULL DEFAULT now()
 );
 
-SELECT * FROM users;
-SELECT * FROM posts;
-SELECT * FROM comments;
+-- \i scripts/blog_data.sql;
