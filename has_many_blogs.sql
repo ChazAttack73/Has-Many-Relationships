@@ -31,19 +31,21 @@ CREATE TABLE posts
   "url" varchar( 510 ) DEFAULT NULL,
   "content" text DEFAULT NULL,
   "created_at" timestamp with time zone NOT NULL DEFAULT now(),
-  "updated_at" timestamp with time zone NOT NULL DEFAULT now()
+  "updated_at" timestamp with time zone NOT NULL DEFAULT now(),
+  "user_id" serial NOT NULL REFERENCES users MATCH FULL
 );
 
 DROP TABLE IF EXISTS comments;
 
 CREATE TABLE comments
 (
-  "id" serial NOT NULL,
+  "id" serial NOT NULL REFERENCES users,
   PRIMARY KEY ( "id" ),
   "body" varchar( 510 ) DEFAULT NULL,
   "created_at" timestamp with time zone NOT NULL DEFAULT now(),
-  "updated_at" timestamp with time zone NOT NULL DEFAULT now()
+  "updated_at" timestamp with time zone NOT NULL DEFAULT now(),
+  "user_id" serial NOT NULL REFERENCES users MATCH FULL,
+  "post_id" serial NOT NULL REFERENCES posts MATCH FULL
 );
 
-
--- \i scripts/blog_data.sql;
+\i scripts/blog_data.sql;
